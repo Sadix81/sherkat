@@ -1,0 +1,46 @@
+{% extends 'main/master.html' %}
+{% load static %}
+{% block content %}
+
+
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% if user.is_authenticated %}
+                        {% for post in posts %}
+                            <div class="col mb-5">
+                                <div class="card h-100">
+                                    <!-- post image-->
+                                    {% if post.image %}
+                                      <img class="card-img-top" src="{{ post.image.url }}" alt="..." />
+                                      {% else %}
+                                      <img class="card-img-top" src="" alt="..." />
+                                    {%  endif %}
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <!-- post title-->
+                                            <h5 class="fw-bolder">{{ post.title }}</h5>                                 
+                                            <!-- post describtion-->
+                                            <span>{{ post.description }}</span>
+                                        </div>
+                                    </div>
+                                    <!-- post actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <a class="btn btn-outline-dark mt-auto" href="{% url 'post-update' pk=post.pk %}">Update post</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% else %}
+                            <h5>You should login first</h5>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+{% endblock%}
+
+

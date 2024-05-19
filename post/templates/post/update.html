@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <section class="container">
+        <div class="login-container">
+            <div class="circle circle-one"></div>
+            <div class="form-container">
+                <h1 class="opacity">Create-Post</h1>
+                <form method="post" action=""  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {%if messages%}
+                        {%for message in messages%}
+                            <div class="alert alert-{{message.tags}}" role="alert">
+                                {{message}}
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                    {{ form.title }} 
+                    {{ form.description }} 
+                    {{ form.image }} 
+                    <button type="submit" class="opacity">SUBMIT</button>
+                </form>
+            </div>
+            <div class="circle circle-two"></div>
+        </div>
+        <div class="theme-btn-container"></div>
+    </section>
+</body>
+<!-- partial -->
+</html>

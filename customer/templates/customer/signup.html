@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Glassmorphism Login</title>
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <section class="container">
+        <div class="login-container">
+            <div class="circle circle-one"></div>
+            <div class="form-container">
+                <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+                <h1 class="opacity">SignUp</h1>
+                <form method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    {%if messages%}
+                        {%for message in messages%}
+                            <div class="alert alert-{{message.tags}}" role="alert">
+                                {{message}}
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                    <input name="username" type="text" placeholder="USERNAME" />
+                    <input name="password" type="password" placeholder="PASSWORD" />
+                    <input name="repeated_password" type="password" placeholder="Repeated Your Password" />   
+                    <button type="submit" class="opacity">SUBMIT</button>
+                </form>
+                <div class="register-forget opacity">
+                    <a href="{% url 'signin' %}">LOGIN</a>
+                </div>
+            </div>
+            <div class="circle circle-two"></div>
+        </div>
+        <div class="theme-btn-container"></div>
+    </section>
+</body>
+<!-- partial -->
+<script src="{% static 'js/auth.js' %}"></script>
+</html>
